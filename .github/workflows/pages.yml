@@ -3,7 +3,6 @@ name: pages
 on:
   push:
     branches: [ "main" ]
-  pull_request:
 
 permissions:
   contents: read
@@ -29,7 +28,7 @@ jobs:
           path: ./_site
 
   deploy:
-    if: github.event_name == 'push' || github.event_name == 'pull_request'
+    if: github.event_name == 'push'
     needs: build
     runs-on: ubuntu-latest
     environment:
@@ -39,4 +38,4 @@ jobs:
       - id: deployment
         uses: actions/deploy-pages@v4
         with:
-          preview: ${{ github.event_name == 'pull_request' }}
+          preview: false
