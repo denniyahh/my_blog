@@ -1,0 +1,32 @@
+{
+  "name": "Jekyll Blog Dev",
+  "image": "mcr.microsoft.com/devcontainers/ruby:3.2-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {},
+    "ghcr.io/devcontainers/features/node:1": { "version": "lts" },
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+  "forwardPorts": [4000],
+  "portsAttributes": {
+    "4000": { "label": "Jekyll (http://127.0.0.1:4000)", "onAutoForward": "notify" }
+  },
+  "containerEnv": { "JEKYLL_ENV": "development" },
+  "postCreateCommand": "bundle install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "DavidAnson.vscode-markdownlint",
+        "redhat.vscode-yaml",
+        "EditorConfig.EditorConfig",
+        "streetsidesoftware.code-spell-checker"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "[markdown]": { "editor.wordWrap": "on" }
+      }
+    }
+  }
+}

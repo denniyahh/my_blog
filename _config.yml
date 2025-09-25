@@ -1,0 +1,36 @@
+title: "My Blog"
+description: "Thoughts, product notes, and experiments."
+url: "https://denniyahh.github.io"
+baseurl: "/my_blog"
+
+# Theme
+theme: minima
+
+# Content
+permalink: /:categories/:title/
+markdown: kramdown
+kramdown:
+  input: GFM
+
+# Plugins supported by github-pages
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-redirect-from
+
+# Hygiene
+exclude:
+  - node_modules
+  - vendor
+  - .devcontainer
+  - .github
+  - README.md
+  - WARP.md
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "post"
