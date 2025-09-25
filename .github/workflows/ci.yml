@@ -22,7 +22,7 @@ jobs:
         run: bundle exec jekyll build --trace
 
       - name: HTML-Proofer (internal links, HTML validity)
-        run: bundle exec htmlproofer ./_site --assume-extension --check-html
+        run: bundle exec htmlproofer ./_site --assume-extension --check-html --disable-external
 
       - name: Markdownlint
         uses: DavidAnson/markdownlint-cli2-action@v16
@@ -39,6 +39,7 @@ jobs:
             --exclude-mail
             --timeout 20
             --verbose
+            --exclude "^https://denniyahh\\.github\\.io(/my_blog)?/?.*"
             **/*.md _site/**/*.html
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
