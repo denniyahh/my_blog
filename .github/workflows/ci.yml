@@ -19,10 +19,10 @@ jobs:
           bundler-cache: true
 
       - name: Build Jekyll
-        run: bundle exec jekyll build --trace
+        run: bundle exec jekyll build --trace --config _config.yml,_config.ci.yml
 
       - name: HTML-Proofer (internal links, HTML validity)
-        run: bundle exec htmlproofer ./_site --assume-extension --check-html --disable-external --url-swap "^/my_blog/:/"
+        run: bundle exec htmlproofer ./_site --assume-extension --check-html --disable-external
 
       - name: Markdownlint
         uses: DavidAnson/markdownlint-cli2-action@v16
