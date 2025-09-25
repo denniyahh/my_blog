@@ -1,0 +1,36 @@
+title: "My Blog"
+description: "Thoughts, product notes, and experiments."
+# Replace YOUR_GITHUB_USERNAME with your username; baseurl is the repo name for project pages
+url: "https://YOUR_GITHUB_USERNAME.github.io"
+baseurl: "/my_blog"
+
+# Theme
+theme: minima
+
+# Content
+permalink: /:categories/:title/
+markdown: kramdown
+kramdown:
+  input: GFM
+
+# Plugins supported by github-pages
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-redirect-from
+
+# Hygiene
+exclude:
+  - node_modules
+  - vendor
+  - .devcontainer
+  - .github
+  - README.md
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "post"

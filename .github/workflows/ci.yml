@@ -1,0 +1,44 @@
+name: ci
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+
+      - name: Build Jekyll
+        run: bundle exec jekyll build --trace
+
+      - name: HTML-Proofer (internal links, HTML validity)
+        run: bundle exec htmlproofer ./_site --assume-extension --check-html --internal-domains="${{ github.repository_owner }}.github.io"
+
+      - name: Markdownlint
+        uses: DavidAnson/markdownlint-cli2-action@v16
+        with:
+          globs: |
+            **/*.md
+
+      - name: External link check
+        uses: lycheeverse/lychee-action@v1
+        with:
+          args: >
+            --accept 200,206,429
+            --max-redirects 5
+            --exclude-mail
+            --timeout 20
+            --verbose
+            **/*.md _site/**/*.html
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
