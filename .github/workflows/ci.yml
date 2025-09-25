@@ -25,7 +25,7 @@ jobs:
         run: bundle exec htmlproofer ./_site --assume-extension --check-html --disable-external
 
       - name: Markdownlint
-        uses: DavidAnson/markdownlint-cli2-action@v16
+        uses: DavidAnson/markdownlint-cli2-action@v20
         with:
           globs: |
             **/*.md
