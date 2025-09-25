@@ -8,3 +8,4 @@ ignores:
   - "_site/**"
   - ".devcontainer/**"
   - ".github/**"
+  - "WARP.md"
