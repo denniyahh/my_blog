@@ -1,7 +1,6 @@
 title: "My Blog"
 description: "Thoughts, product notes, and experiments."
-# Replace YOUR_GITHUB_USERNAME with your username; baseurl is the repo name for project pages
-url: "https://YOUR_GITHUB_USERNAME.github.io"
+url: "https://denniyahh.github.io"
 baseurl: "/my_blog"
 
 # Theme

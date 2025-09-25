@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.2.2"
+ruby "3.2.9"
 
 gem "github-pages", group: :jekyll_plugins
 
