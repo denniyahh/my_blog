@@ -26,6 +26,7 @@ exclude:
   - .devcontainer
   - .github
   - README.md
+  - WARP.md
 
 # Defaults
 defaults:
