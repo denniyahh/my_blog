@@ -22,7 +22,7 @@ jobs:
         run: bundle exec jekyll build --trace
 
       - name: HTML-Proofer (internal links, HTML validity)
-        run: bundle exec htmlproofer ./_site --assume-extension --check-html --internal-domains="${{ github.repository_owner }}.github.io"
+        run: bundle exec htmlproofer ./_site --assume-extension --check-html
 
       - name: Markdownlint
         uses: DavidAnson/markdownlint-cli2-action@v16
