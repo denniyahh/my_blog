@@ -1,6 +1,7 @@
 ---
 layout: home
-title: Home
+title: Latest Updates
+#list_title: Updates
 ---
 
-Welcome to my blog. New posts will appear below.
+Welcome to my blog. New updates will appear below.
