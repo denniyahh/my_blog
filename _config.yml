@@ -6,6 +6,7 @@ baseurl: "/"
 # Navigation
 header_pages:
   - index.md
+  - long_form.md
   - about.md
 
 # Theme
