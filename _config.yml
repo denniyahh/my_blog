@@ -1,7 +1,13 @@
-title: "My Blog"
+title: "dennis.kim"
 description: "Thoughts, product notes, and experiments."
 url: "https://denniyahh.github.io"
-baseurl: "/my_blog"
+baseurl: "/"
+
+# Navigation
+header_pages:
+  - index.md
+  - long_form.md
+  - about.md
 
 # Theme
 theme: minima
@@ -26,6 +32,7 @@ exclude:
   - .devcontainer
   - .github
   - README.md
+  - AGENTS.md
   - WARP.md
 
 # Defaults
