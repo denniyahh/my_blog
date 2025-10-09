@@ -36,10 +36,8 @@ jobs:
           args: >
             --accept 200,206,429
             --max-redirects 5
-            --exclude-mail
             --timeout 20
             --verbose
-            --exclude "^https://denniyahh\\.github\\.io(/my_blog)?/?.*"
-            **/*.md _site/**/*.html
+            --exclude "^http://dennis\\.kim?/?.*" **/*.md _site/**/*.html
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
