@@ -38,7 +38,7 @@ jobs:
             --max-redirects 5
             --timeout 20
             --verbose
-            --exclude "^https?://dennis\\.kim/?.*"
+            --exclude "^https?://dennis\\.kim/?*"
             **/*.md _site/**/*.html
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
