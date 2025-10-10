@@ -5,9 +5,9 @@ The site follows the GitHub Pages Jekyll layout. Source markdown lives at the ro
 
 ## Build, Test, and Development Commands
 - `bundle install` — install Ruby 3.2 dependencies defined in the `Gemfile`.
-- `bundle exec jekyll serve --livereload` — run the site locally at `http://127.0.0.1:4000/my_blog` with hot reload.
+- `bundle exec jekyll serve --livereload` — run the site locally at `http://127.0.0.1:4000/` with hot reload.
 - `bundle exec jekyll build --trace` — create a production build in `_site/` with verbose diagnostics.
-- `bundle exec htmlproofer ./_site --assume-extension --check-html --disable-external` — validate internal links and markup after a build.
+- `bundle exec htmlproofer ./_site --assume-extension --check-html --disable-external --no-enforce-https` — validate internal links and markup after a build.
 
 ## Coding Style & Naming Conventions
 Two-space indentation, LF endings, and trimmed whitespace are enforced via `.editorconfig`. Posts always start with YAML front matter declaring `title` and optional `description`. Stick to GitHub Flavored Markdown (set through kramdown) and keep heading levels consistent. Inline HTML is allowed for complex layouts; pair it with semantic classes from Minima when possible. Reference images from an `assets/` folder and use hyphenated filenames.
