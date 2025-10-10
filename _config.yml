@@ -1,12 +1,12 @@
 title: "dennis.kim"
 description: "Thoughts, product notes, and experiments."
-url: "https://denniyahh.github.io"
-baseurl: "/"
+url: "http://dennis.kim"
+baseurl: ""
 
 # Navigation
 header_pages:
   - index.md
-  - long_form.md
+  - longform.md
   - about.md
 
 # Theme

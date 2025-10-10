@@ -22,7 +22,7 @@ jobs:
         run: bundle exec jekyll build --trace --config _config.yml,_config.ci.yml
 
       - name: HTML-Proofer (internal links, HTML validity)
-        run: bundle exec htmlproofer ./_site --assume-extension --check-html --disable-external
+        run: bundle exec htmlproofer ./_site --assume-extension --check-html --disable-external --no-enforce-https
 
       - name: Markdownlint
         uses: DavidAnson/markdownlint-cli2-action@v20
@@ -31,15 +31,14 @@ jobs:
             **/*.md
 
       - name: External link check
-        uses: lycheeverse/lychee-action@v1
+        uses: lycheeverse/lychee-action@v2
         with:
           args: >
             --accept 200,206,429
             --max-redirects 5
-            --exclude-mail
             --timeout 20
             --verbose
-            --exclude "^https://denniyahh\\.github\\.io(/my_blog)?/?.*"
+            --exclude "^https?://dennis\.kim"
             **/*.md _site/**/*.html
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
