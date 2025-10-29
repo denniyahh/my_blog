@@ -10,3 +10,4 @@ ignores:
   - ".github/**"
   - "WARP.md"
   - "AGENTS.md"
+  - "docs/**"
