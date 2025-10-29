@@ -9,9 +9,6 @@ header_pages:
   - longform.md
   - about.md
 
-# Theme
-theme: minima
-
 # Content
 permalink: /:categories/:title/
 markdown: kramdown

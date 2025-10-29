@@ -6,3 +6,10 @@ _site/
 .bundle/
 vendor/
 tmp/
+.ruby-lsp/
+node_modules/
+.DS_Store
+.idea/
+.vscode/
+bin/
+docs/
