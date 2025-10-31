@@ -13,6 +13,18 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "pnpm"
+
+      - name: Install frontend dependencies
+        run: corepack pnpm install --frozen-lockfile
+
+      - name: Build frontend assets
+        run: corepack pnpm run build
+
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.3.9"
