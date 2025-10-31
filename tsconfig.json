@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "noEmit": true,
+    "paths": {
+      "@/*": [
+        "./assets/js/*"
+      ]
+    }
+  },
+  "include": [
+    "assets/js/**/*",
+    "vite.config.ts",
+    "tailwind.config.ts"
+  ]
+}
