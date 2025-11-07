@@ -5,12 +5,11 @@
   {%- seo -%}
   {%- assign vite_dev = site.vite.dev_server.enabled | default: false -%}
   {%- assign vite_url = site.vite.dev_server.url | default: "http://127.0.0.1:5173" -%}
+  <link rel="stylesheet" href="{{ "/assets/dist/css/main.css" | relative_url }}" id="bundle-css">
   {%- if jekyll.environment == "development" and vite_dev -%}
-    <link rel="stylesheet" href="{{ vite_url }}/assets/css/main.scss">
     <script type="module" src="{{ vite_url }}/@vite/client"></script>
     <script type="module" src="{{ vite_url }}/assets/js/main.ts"></script>
   {%- else -%}
-    <link rel="stylesheet" href="{{ "/assets/dist/css/main.css" | relative_url }}">
     <script type="module" src="{{ "/assets/dist/js/main.js" | relative_url }}"></script>
   {%- endif -%}
   {%- feed_meta -%}

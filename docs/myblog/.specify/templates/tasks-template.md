@@ -8,7 +8,7 @@ description: "Task list template for feature implementation"
 **Input**: Design documents from `/specs/[###-feature-name]/`
 **Prerequisites**: plan.md (required), spec.md (required for user stories), research.md, data-model.md, contracts/
 
-**Tests**: The examples below include test tasks. Tests are OPTIONAL - only include them if explicitly requested in the feature specification.
+**Tests**: Always include the build verification trio from Principle IV (`bundle exec jekyll build --config _config.yml,_config.ci.yml`, `bundle exec htmlproofer ./_site --assume-extension --check-html --disable-external --no-enforce-https`, `npx markdownlint-cli2 "**/*.md"`). Story-specific tests are optional unless the feature spec demands them.
 
 **Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
 
@@ -18,12 +18,24 @@ description: "Task list template for feature implementation"
 - **[Story]**: Which user story this task belongs to (e.g., US1, US2, US3)
 - Include exact file paths in descriptions
 
+## Constitution Hooks
+
+- **Principle I – Markdown canon**: Add tasks that specify exact Markdown files (`index.md`, `about.md`, `_posts/YYYY-MM-DD-slug.md`, `longform.md`) and their front matter updates; never touch `_site/`.
+- **Principle II – Dual-runtime parity**: Include tasks for `bundle install`, `pnpm install`, `pnpm dev`, `pnpm run build`, and keeping `_config.yml` / `_config.ci.yml` in sync when needed.
+- **Principle III – Mobile-first single-hand experience**: Capture tasks for updating thumb-zone grids in `docs/theme-spec.md`, enforcing ≥48 px targets, taking one-hand usability videos, and collecting Lighthouse Mobile metrics (LCP ≤2 s, payload ≤150 KB).
+- **Principle IV – CI-grade verification**: Reserve tasks for the command trio listed above plus attaching screenshots/logs to PRs.
+- **Principle V – Living documentation & plan discipline**: Add explicit tasks for refreshing `docs/work-plan.md`, `docs/theme-spec.md`, `docs/dev-environment-inventory.md`, and linking evidence in PRs.
+- **Principle VI – AI-agent-first workflow**: Define tasks for scripting agent-friendly commands, provisioning staging previews, collecting logs/screenshots automatically, and reporting status via chat so work can be supervised from a phone.
+
 ## Path Conventions
 
-- **Single project**: `src/`, `tests/` at repository root
-- **Web app**: `backend/src/`, `frontend/src/`
-- **Mobile**: `api/src/`, `ios/src/` or `android/src/`
-- Paths shown below assume single project - adjust based on plan.md structure
+- Markdown pages at the repository root (`index.md`, `about.md`, `longform.md`).
+- Blog posts live in `_posts/YYYY-MM-DD-slug.md` with YAML front matter.
+- Theme overrides live in `_layouts/`, `_includes/`, `_sass/`.
+- Assets and TypeScript live under `assets/css/` and `assets/js/`; generated bundles go to `assets/dist/` (gitignored).
+- Tooling + automation touch `_config.yml`, `_config.ci.yml`, `.github/workflows/`, and `bin/`.
+- Documentation and automation inputs sit in `docs/` (notably `docs/work-plan.md`, `docs/theme-spec.md`, `docs/dev-environment-inventory.md`, `.specify/`).
+- `_site/` is disposable build output—never target it in tasks.
 
 <!-- 
   ============================================================================
@@ -46,28 +58,31 @@ description: "Task list template for feature implementation"
 
 ## Phase 1: Setup (Shared Infrastructure)
 
-**Purpose**: Project initialization and basic structure
+**Purpose**: Prepare tooling, documentation, and automation guardrails.
 
-- [ ] T001 Create project structure per implementation plan
-- [ ] T002 Initialize [language] project with [framework] dependencies
-- [ ] T003 [P] Configure linting and formatting tools
+- [ ] T001 Run `bundle install` and capture Ruby/Bundler versions in `docs/dev-environment-inventory.md`.
+- [ ] T002 Run `pnpm install` (or `corepack pnpm install`) and note any script changes.
+- [ ] T003 Ensure `/specs/.../plan.md` Constitution Check answers (Principles I–VI) are filled before coding.
+- [ ] T004 Update `docs/work-plan.md` with scope, branch, and next steps.
+- [ ] T005 Verify `.gitignore` keeps `_site/` and `assets/dist/` clean; remove stray artifacts.
+- [ ] T006 Document/update `.specify/scripts/agent-run.*` (or equivalent) so AI agents can execute plan → tasks → tests → staging from a smartphone-only chat session, including default status messages.
 
 ---
 
 ## Phase 2: Foundational (Blocking Prerequisites)
 
-**Purpose**: Core infrastructure that MUST be complete before ANY user story can be implemented
+**Purpose**: Align theme scaffolding, configs, and shared components before story work.
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
 Examples of foundational tasks (adjust based on your project):
 
-- [ ] T004 Setup database schema and migrations framework
-- [ ] T005 [P] Implement authentication/authorization framework
-- [ ] T006 [P] Setup API routing and middleware structure
-- [ ] T007 Create base models/entities that all stories depend on
-- [ ] T008 Configure error handling and logging infrastructure
-- [ ] T009 Setup environment configuration management
+- [ ] T007 Sync `_config.yml` and `_config.ci.yml` changes (Principle II).
+- [ ] T008 Refresh design tokens/layout decisions in `docs/theme-spec.md` with thumb-zone grids, 360–428 px breakpoints, and single-column flows (Principle III).
+- [ ] T009 Implement shared wrappers in `_layouts/default.html` and `_includes/head.html`, biasing navigation/actions toward bottom-of-screen reach.
+- [ ] T010 Build/update `assets/css/theme.scss` (or Tailwind config) with mobile-first typography, spacing, and animation budgets.
+- [ ] T011 Wire asset entry points in `assets/js/main.ts` (or equivalent) and ensure Vite build succeeds.
+- [ ] T012 Add accessibility/performance instrumentation (focus outlines, prefers-reduced-motion classes, mobile Lighthouse scripts, preload hints) and expose them via `.specify/scripts` so agents can run them unattended.
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -79,21 +94,21 @@ Examples of foundational tasks (adjust based on your project):
 
 **Independent Test**: [How to verify this story works on its own]
 
-### Tests for User Story 1 (OPTIONAL - only if tests requested) ⚠️
+### Tests for User Story 1 (MANDATORY per Principle IV) ⚠️
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T010 [P] [US1] Contract test for [endpoint] in tests/contract/test_[name].py
-- [ ] T011 [P] [US1] Integration test for [user journey] in tests/integration/test_[name].py
+- [ ] T013 [US1] Run `bundle exec jekyll build --config _config.yml,_config.ci.yml` and confirm only intended pages changed.
+- [ ] T014 [US1] Run `bundle exec htmlproofer ./_site --assume-extension --check-html --disable-external --no-enforce-https`, scoping warnings to the touched pages.
+- [ ] T015 [US1] Run `npx markdownlint-cli2 "**/*.md"` (or limited globs) and attach the results + Lighthouse Mobile reports + one-hand demo video/GIF to the PR.
 
 ### Implementation for User Story 1
 
-- [ ] T012 [P] [US1] Create [Entity1] model in src/models/[entity1].py
-- [ ] T013 [P] [US1] Create [Entity2] model in src/models/[entity2].py
-- [ ] T014 [US1] Implement [Service] in src/services/[service].py (depends on T012, T013)
-- [ ] T015 [US1] Implement [endpoint/feature] in src/[location]/[file].py
-- [ ] T016 [US1] Add validation and error handling
-- [ ] T017 [US1] Add logging for user story 1 operations
+- [ ] T016 [US1] Update the relevant Markdown file (e.g., `_posts/YYYY-MM-DD-slug.md`, `index.md`, `about.md`) with required front matter.
+- [ ] T017 [P] [US1] Adjust theme markup in `_layouts/` or `_includes/` (cite exact file) with semantic HTML, mobile thumb zones, and accessibility annotations.
+- [ ] T018 [P] [US1] Implement supporting styles in `assets/css/theme.scss` or `_sass/_components.scss`.
+- [ ] T019 [US1] Wire any interactive behavior in `assets/js/[feature].ts` (optional if story is static).
+- [ ] T020 [US1] Update `docs/theme-spec.md`, capture screenshots/video, and trigger the agent staging script/CI job so a preview URL + logs are posted for smartphone review.
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
@@ -105,17 +120,19 @@ Examples of foundational tasks (adjust based on your project):
 
 **Independent Test**: [How to verify this story works on its own]
 
-### Tests for User Story 2 (OPTIONAL - only if tests requested) ⚠️
+### Tests for User Story 2 (MANDATORY per Principle IV) ⚠️
 
-- [ ] T018 [P] [US2] Contract test for [endpoint] in tests/contract/test_[name].py
-- [ ] T019 [P] [US2] Integration test for [user journey] in tests/integration/test_[name].py
+- [ ] T021 [US2] Re-run `bundle exec jekyll build --config _config.yml,_config.ci.yml` after merging US2 work with US1.
+- [ ] T022 [US2] Run `bundle exec htmlproofer ./_site --assume-extension --check-html --disable-external --no-enforce-https` focusing on the new navigation/flow.
+- [ ] T023 [US2] Validate `npx markdownlint-cli2 "**/*.md"` (or targeted globs) plus Lighthouse Mobile runs + one-hand usability screenshots to satisfy Principle III.
 
 ### Implementation for User Story 2
 
-- [ ] T020 [P] [US2] Create [Entity] model in src/models/[entity].py
-- [ ] T021 [US2] Implement [Service] in src/services/[service].py
-- [ ] T022 [US2] Implement [endpoint/feature] in src/[location]/[file].py
-- [ ] T023 [US2] Integrate with User Story 1 components (if needed)
+- [ ] T024 [US2] Update navigation or listing partials in `_includes/` (e.g., `_includes/nav.html`, `_includes/post-card.html`).
+- [ ] T025 [P] [US2] Extend `_sass/_layout.scss` or `assets/css/theme.scss` with layout changes and document them in `docs/theme-spec.md`.
+- [ ] T026 [P] [US2] Wire supporting JS (if needed) in `assets/js/[feature].ts` and ensure `pnpm dev` reflects it.
+- [ ] T027 [US2] Adjust content sources (`index.md`, `_posts/...`) to expose the new story slice.
+- [ ] T028 [US2] Update `docs/work-plan.md`, attach screenshots/GIFs, and ensure the staging deploy shares a refreshed preview link/log bundle via the agent channel.
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 
@@ -127,16 +144,18 @@ Examples of foundational tasks (adjust based on your project):
 
 **Independent Test**: [How to verify this story works on its own]
 
-### Tests for User Story 3 (OPTIONAL - only if tests requested) ⚠️
+### Tests for User Story 3 (MANDATORY per Principle IV) ⚠️
 
-- [ ] T024 [P] [US3] Contract test for [endpoint] in tests/contract/test_[name].py
-- [ ] T025 [P] [US3] Integration test for [user journey] in tests/integration/test_[name].py
+- [ ] T029 [US3] Run `bundle exec jekyll build --config _config.yml,_config.ci.yml` after rebasing on prior stories.
+- [ ] T030 [US3] Run `bundle exec htmlproofer ./_site --assume-extension --check-html --disable-external --no-enforce-https` for the new flow.
+- [ ] T031 [US3] Run `npx markdownlint-cli2 "**/*.md"` and attach accessibility/performance notes (contrast checks, payload measurements, Lighthouse Mobile run, single-hand video).
 
 ### Implementation for User Story 3
 
-- [ ] T026 [P] [US3] Create [Entity] model in src/models/[entity].py
-- [ ] T027 [US3] Implement [Service] in src/services/[service].py
-- [ ] T028 [US3] Implement [endpoint/feature] in src/[location]/[file].py
+- [ ] T032 [US3] Create or update Markdown content (e.g., `_posts/...`, `longform.md`) plus alt text for assets in `assets/`.
+- [ ] T033 [P] [US3] Extend `_sass/_components.scss` or `assets/css/theme.scss` for the new UI surface.
+- [ ] T034 [P] [US3] Adjust `_layouts/` / `_includes/` to route users into the new journey while keeping critical actions within thumb reach.
+- [ ] T035 [US3] Capture screenshots or recordings, update `docs/theme-spec.md`, and have the agent redeploy staging + post the link/log recap for approval.
 
 **Checkpoint**: All user stories should now be independently functional
 
@@ -150,12 +169,13 @@ Examples of foundational tasks (adjust based on your project):
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] TXXX [P] Documentation updates in docs/
-- [ ] TXXX Code cleanup and refactoring
-- [ ] TXXX Performance optimization across all stories
-- [ ] TXXX [P] Additional unit tests (if requested) in tests/unit/
-- [ ] TXXX Security hardening
-- [ ] TXXX Run quickstart.md validation
+- [ ] TXXX [P] Refresh `docs/work-plan.md`, `docs/theme-spec.md`, `docs/dev-environment-inventory.md`, and `.specify` artifacts.
+- [ ] TXXX Clean up `_layouts/`, `_includes/`, `_sass/`, and `assets/` to remove dead code while preserving Principle I.
+- [ ] TXXX Run the verification trio again (`bundle exec jekyll build --config _config.yml,_config.ci.yml`, `bundle exec htmlproofer ./_site --assume-extension --check-html --disable-external --no-enforce-https`, `npx markdownlint-cli2 "**/*.md"`).
+- [ ] TXXX Capture accessibility/performance evidence (WCAG contrast report, Lighthouse Mobile payload sizes, single-hand walkthrough video).
+- [ ] TXXX Script/verify agent-run staging + production deploy commands (or GitHub Actions workflows) so a phone-based reviewer can trigger them with a single instruction.
+- [ ] TXXX [P] Screenshot or record UI changes and attach to PR.
+- [ ] TXXX Ensure `_site/` and `assets/dist/` remain untracked and clean.
 
 ---
 
@@ -178,33 +198,34 @@ Examples of foundational tasks (adjust based on your project):
 
 ### Within Each User Story
 
-- Tests (if included) MUST be written and FAIL before implementation
-- Models before services
-- Services before endpoints
-- Core implementation before integration
-- Story complete before moving to next priority
+- Verification tasks (build + htmlproofer + markdownlint) MUST fail before implementation so regressions are visible.
+- Update Markdown/front matter first, then `_layouts/` + `_includes/`, then `_sass/` / `assets/css/`, and finally any `assets/js/`.
+- Record accessibility/performance evidence, staging links, and documentation updates before marking the story done.
+- Ensure `.specify/scripts/agent-run` (or CI) posts smartphone-friendly status/logs + preview URLs before calling the story complete.
+- Keep each story independently demoable before moving to the next priority.
 
 ### Parallel Opportunities
 
-- All Setup tasks marked [P] can run in parallel
-- All Foundational tasks marked [P] can run in parallel (within Phase 2)
-- Once Foundational phase completes, all user stories can start in parallel (if team capacity allows)
-- All tests for a user story marked [P] can run in parallel
-- Models within a story marked [P] can run in parallel
-- Different user stories can be worked on in parallel by different team members
+- All Setup tasks marked [P] can run in parallel.
+- All Foundational tasks marked [P] can run in parallel (within Phase 2).
+- Once Foundational completes, user stories can run in parallel if they touch different Markdown pages or theme partials.
+- Verification commands can be scripted to run concurrently after each story, but capture outputs separately.
+- Markdown edits and `_sass`/`assets/css` updates can happen in parallel if they reference different files; coordinate when touching `_layouts/` or `_includes/`.
+- Different user stories can be owned by different people so long as Principle V documentation stays in sync.
 
 ---
 
 ## Parallel Example: User Story 1
 
 ```bash
-# Launch all tests for User Story 1 together (if tests requested):
-Task: "Contract test for [endpoint] in tests/contract/test_[name].py"
-Task: "Integration test for [user journey] in tests/integration/test_[name].py"
+# Launch all verification commands for User Story 1:
+bundle exec jekyll build --config _config.yml,_config.ci.yml
+bundle exec htmlproofer ./_site --assume-extension --check-html --disable-external --no-enforce-https
+npx markdownlint-cli2 "**/*.md"
 
-# Launch all models for User Story 1 together:
-Task: "Create [Entity1] model in src/models/[entity1].py"
-Task: "Create [Entity2] model in src/models/[entity2].py"
+# Launch all content/theming edits for User Story 1 together:
+Task: "Update _posts/YYYY-MM-DD-sample.md with new front matter"
+Task: "Adjust assets/css/theme.scss + _includes/post-card.html"
 ```
 
 ---
@@ -242,10 +263,10 @@ With multiple developers:
 
 ## Notes
 
-- [P] tasks = different files, no dependencies
-- [Story] label maps task to specific user story for traceability
-- Each user story should be independently completable and testable
-- Verify tests fail before implementing
-- Commit after each task or logical group
-- Stop at any checkpoint to validate story independently
-- Avoid: vague tasks, same file conflicts, cross-story dependencies that break independence
+- [P] tasks touch different files (e.g., `_posts/` vs `_sass/`) so they can run in parallel without merge pain.
+- Always label tasks with their story (US1/US2/US3) and cite exact file paths plus command outputs/logs or preview links.
+- Each story must be independently demoable; stop after every checkpoint to re-run the verification trio.
+- Document decisions/screenshots in `docs/` before landing code; link them from the PR and the agent status message.
+- Never modify `_site/` or commit generated assets; rerun builds instead.
+- Keep commits small and reversible—one principle violation per commit at most, and justify it in the message.
+- Staging/production deploys must remain agent-triggerable (scripts or CI dispatch) so you can supervise entirely from a phone.

@@ -29,6 +29,9 @@
             zlib
             which
             libyaml
+            broot
+            zellij
+            fzf
           ];
 
           shellHook = ''

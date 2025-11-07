@@ -31,7 +31,12 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- **Principle I – Markdown canon**: List every Markdown file/post this plan touches, required front matter updates, and confirm `_site/` stays untouched.
+- **Principle II – Dual-runtime parity**: Spell out the Bundler + pnpm commands that will run (`bundle exec jekyll serve`, `bundle exec jekyll build --config _config.yml,_config.ci.yml`, `pnpm dev`, `pnpm run build`, `bundle exec htmlproofer …`) and any config-sync work.
+- **Principle III – Mobile-first single-hand experience**: Detail thumb-zone layout decisions, tap-target sizing (≥48 px), mobile-first typography/spacing tokens, and how you will capture Lighthouse Mobile or equivalent metrics (LCP ≤2 s, input delay ≤100 ms, payload ≤150 KB) plus one-handed usability evidence (screenshots/video).
+- **Principle IV – CI-grade verification**: Commit to running `bundle exec jekyll build --config _config.yml,_config.ci.yml`, `bundle exec htmlproofer ./_site --assume-extension --check-html --disable-external --no-enforce-https`, and `npx markdownlint-cli2 "**/*.md"` before any review request.
+- **Principle V – Living documentation & plan discipline**: Identify which docs (`docs/work-plan.md`, `docs/theme-spec.md`, `docs/dev-environment-inventory.md`) must be updated as part of this feature and who owns the updates.
+- **Principle VI – AI-agent-first workflow**: Explain how agents will execute this plan remotely (scripts, CI jobs, staging deploy steps) and how outputs (logs, preview URLs, screenshots) stay reviewable from a smartphone.
 
 ## Project Structure
 
@@ -48,51 +53,28 @@ specs/[###-feature]/
 ```
 
 ### Source Code (repository root)
-<!--
-  ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
-  for this feature. Delete unused options and expand the chosen structure with
-  real paths (e.g., apps/admin, packages/something). The delivered plan must
-  not include Option labels.
--->
-
 ```text
-# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)
-src/
-├── models/
-├── services/
-├── cli/
-└── lib/
-
-tests/
-├── contract/
-├── integration/
-└── unit/
-
-# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
-backend/
-├── src/
-│   ├── models/
-│   ├── services/
-│   └── api/
-└── tests/
-
-frontend/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   └── services/
-└── tests/
-
-# [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
-api/
-└── [same as backend above]
-
-ios/ or android/
-└── [platform-specific structure: feature modules, UI flows, platform tests]
+repo/
+├── index.md               # landing content (Principle I)
+├── about.md               # profile page
+├── longform.md            # curated essays
+├── _posts/                # dated blog posts in YYYY-MM-DD-slug.md format
+├── assets/
+│   ├── css/               # Tailwind/Vite styles compiled via pnpm
+│   ├── js/                # TypeScript entry points
+│   └── dist/              # generated bundles (gitignored, never edited)
+├── _layouts/, _includes/, _sass/   # theme overrides for Jekyll
+├── bin/                   # bundler binstubs + helper scripts
+├── docs/
+│   └── myblog/
+│       ├── .specify/      # constitution, templates, automation prompts
+│       │   └── scripts/   # agent-executable workflows (plan → tasks → deploy)
+│       └── .codex/        # agent prompt set
+├── .github/workflows/     # CI mirrors local verification commands
+└── _site/                 # disposable build output
 ```
 
-**Structure Decision**: [Document the selected structure and reference the real
-directories captured above]
+**Structure Decision**: Document which of the paths above (or additional ones you add) will change and how they respect Principle I (content placement) and Principle II (tooling parity).
 
 ## Complexity Tracking
 
