@@ -11,4 +11,6 @@ ignores:
   - "WARP.md"
   - "AGENTS.md"
   - "docs/**"
+  - ".bundler/**"
+  - "docs/tmp/**"
   - "README.md"

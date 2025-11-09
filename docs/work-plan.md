@@ -1,21 +1,22 @@
 # Theme Rebuild Work Plan
 
 ## Active Branch
-- `theme/rebuild`
+- `001-mobile-first-redesign`
 
 ## Near-Term Objectives
-- [ ] Extract core Minima layouts/includes into repo for customization.
-- [ ] Define design tokens (color, typography, spacing) in `docs/theme-spec.md`.
-- [ ] Stand up SCSS pipeline (`assets/css/theme.scss`) and basic layout shell.
-- [ ] Set up Neovim tooling (Treesitter, LSPs, Codex bindings) for UI work.
-- [ ] Establish build+lint scripts (`bin/dev`, `bin/test`) to streamline the loop.
+- [ ] Lock mobile-first design tokens (type scale, spacing, and reaffirmed palette) in `docs/theme-spec.md`.
+- [ ] Rebuild homepage hero + navigation for <=360px viewports with 48px tap targets (User Story P1).
+- [ ] Audit `_posts` layouts so headings, lists, media, and code blocks scale responsively (User Story P2).
+- [ ] Implement progressive enhancement breakpoints (>=768px, >=1024px) to prove desktop parity (User Story P3).
+- [ ] Automate validation loop: `bundle exec jekyll build --config _config.yml,_config.ci.yml`, htmlproofer, markdownlint, Lighthouse Mobile capture + evidence upload.
+- [x] Produce `.specify/scripts/bash/build-mobile-preview.sh` so agents can run the preview + Lighthouse steps end-to-end.
 
 ## Backlog Ideas
-- Create design tokens data file (`_data/theme.json`) for reuse.
-- Investigate Tailwind vs. custom utility classes.
-- Plan dark mode toggle and theme switcher.
-- Add image optimization pipeline (responsive sources).
+- Snapshot existing Minima palette variables into `_data/theme.json` for reuse in Markdown/front matter.
+- Evaluate utility-class helper (Tailwind vs. rolling a small token-based utilities partial).
+- Plan dark mode toggle and color-scheme media query once mobile-first baseline ships.
+- Add responsive image pipeline (e.g., `cwebp` + `sharp-cli`) to guarantee <=150KB hero assets.
 
 ## Notes
 - Keep plan updated at the end of each work session.
-- Refer to `docs/theme-spec.md` for detailed design decisions.
+- Refer to `docs/specs/001-mobile-first-redesign/spec.md` for acceptance criteria + documentation requirements.
