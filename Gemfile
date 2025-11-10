@@ -9,7 +9,7 @@ group :development do
 end
 
 group :development, :test do
-  gem "html-proofer", "~> 5.0"
+  gem "html-proofer", "~> 5.1"
   gem "ruby-lsp"
   gem "debug"
   gem "rubocop", require: false
