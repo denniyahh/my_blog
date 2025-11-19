@@ -34,6 +34,9 @@
             zellij
             fzf
             chromium
+            broot
+            zellij
+            fzf
           ];
 
          shellHook = ''
