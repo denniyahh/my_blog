@@ -37,6 +37,8 @@
             broot
             zellij
             fzf
+            chromium
+            python314
           ];
 
          shellHook = ''

@@ -43,6 +43,18 @@
   - Landing: hero (copy + CTA + supporting image), featured posts carousel (horizontal scroll on mobile), standard post list.
   - Post template: sticky header w/drawer, max body width 70ch, collapsible ToC under hero, media scaled to 100% width with optional captions.
   - About/longform: same tokens, add highlight callouts for key facts.
+  - Landing page with hero, featured post, post list modules.
+  - Post template with sticky table of contents and readable column.
+  - Longform index with category filters.
+- **Components inventory**:
+  - Navigation (desktop/mobile)
+  - Footer with social links + newsletter stub
+  - Post cards, featured hero, tag badges
+  - Callouts, code blocks, footnotes
+- Landing: hero (copy + CTA + supporting image), featured posts carousel (horizontal scroll on mobile), standard post list.
+- Post template: sticky header w/drawer, max body width 70ch, collapsible ToC under hero, media scaled to 100% width with optional captions.
+- About/longform: same tokens, add highlight callouts for key facts.
+- Persistent nav affordances: social icon stack anchored to the bottom-right corner (desktop aligns with nav gutter, mobile floats just above the bottom edge) and the hamburger trigger anchored bottom-left on palm breakpoints so both controls are reachable with one thumb.
 - **Components inventory** (prioritized):
   - Sticky header + drawer nav (hamburger -> overlay) with 48px tap targets.
   - CTA button styles (primary/accent, full-width on mobile, inline on desktop).
