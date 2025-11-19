@@ -15,5 +15,11 @@ Two-space indentation, LF endings, and trimmed whitespace are enforced via `.edi
 ## Testing Guidelines
 Mirror CI by running `bundle exec jekyll build --config _config.yml,_config.ci.yml` before checks. Follow up with the html-proofer command above to catch broken anchors or HTML regressions. Markdownlint (`npx markdownlint-cli2 "**/*.md"`) and Lychee link checks both run in GitHub Actions; resolve any warnings locally to keep pipelines green. For new features, add sample content or fixtures under `_posts/` to exercise the changes.
 
+## DevPod Default Context
+Unless a task explicitly says otherwise, run all commands from inside the `myblog-devpod` workspace (reachable via `ssh myblog-devpod.devpod` or `devpod ssh myblog-devpod`). Host-level commands should only be used when the instructions call them out specifically.
+Run remote shell commands as the `vscode` user (the default devpod account) by wrapping them in `bash -lc '…'` so the devpod loads `.bash_profile`/`.profile` and inherits the full environment (Nix, pnpm, aliases).
+When executing any command via SSH, use the pattern `ssh myblog-devpod.devpod "bash -lic 'cd /workspaces/myblog-devpod && direnv exec . <command>'"` so the working directory and Nix devshell are always set correctly.
+When updating Markdown lint rules, edit `.markdownlint-cli2.yaml`'s `ignores` list instead of using a separate `.markdownlintignore` file to keep CI and scripts consistent.
+
 ## Commit & Pull Request Guidelines
 Recent history favors sentence-case commit messages with concise imperatives (e.g., `Initialize Jekyll…`). Keep subjects under ~72 characters and add detail in the body when needed. Pull requests should summarize the change, list affected pages, and note `bundle exec jekyll build` + html-proofer results. Include screenshots or GIFs for visual updates and reference issues with `Fixes #ID` so automation can close them on merge.

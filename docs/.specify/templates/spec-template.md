@@ -5,6 +5,17 @@
 **Status**: Draft  
 **Input**: User description: "$ARGUMENTS"
 
+## Constitution Alignment Checklist *(mandatory)*
+
+| Principle | Evidence / Decisions to capture |
+|-----------|---------------------------------|
+| I. Markdown canon | Identify the Markdown files/posts involved, required front matter, and confirm `_site/` remains throwaway output. |
+| II. Dual-runtime parity | List the Bundler + pnpm commands the feature relies on and call out any config sync (`_config.yml` vs `_config.ci.yml`) work. |
+| III. Mobile-first single-hand experience | Explain how layouts stay thumb-reachable, tap targets remain ≥48 px, assets stay ≤150 KB, and provide the Lighthouse Mobile / video evidence you will collect. |
+| IV. CI-grade verification | Specify when `bundle exec jekyll build --config _config.yml,_config.ci.yml`, `bundle exec htmlproofer ./_site --assume-extension --check-html --disable-external --no-enforce-https`, and `npx markdownlint-cli2 "**/*.md"` will run. |
+| V. Living documentation & plan discipline | Note the required updates to `docs/work-plan.md`, `docs/theme-spec.md`, and `docs/dev-environment-inventory.md` (or justify deferring). |
+| VI. AI-agent-first workflow | Describe how agents will run commands end-to-end (scripts, CI pipelines), surface staging URLs/logs via chat, and allow smartphone-only review + approval. |
+
 ## User Scenarios & Testing *(mandatory)*
 
 <!--
