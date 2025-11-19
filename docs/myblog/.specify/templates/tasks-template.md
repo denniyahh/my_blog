@@ -37,6 +37,10 @@ description: "Task list template for feature implementation"
 - Documentation and automation inputs sit in `docs/` (notably `docs/work-plan.md`, `docs/theme-spec.md`, `docs/dev-environment-inventory.md`, `.specify/`).
 - `_site/` is disposable build output—never target it in tasks.
 
+<!--
+  ============================================================================
+  IMPORTANT: The tasks below are SAMPLE TASKS for illustration purposes only.
+
 <!-- 
   ============================================================================
   IMPORTANT: The tasks below are SAMPLE TASKS for illustration purposes only.
@@ -46,11 +50,13 @@ description: "Task list template for feature implementation"
   - Feature requirements from plan.md
   - Entities from data-model.md
   - Endpoints from contracts/
+
   
   Tasks MUST be organized by user story so each story can be:
   - Implemented independently
   - Tested independently
   - Delivered as an MVP increment
+
   
   DO NOT keep these sample tasks in the generated tasks.md file.
   ============================================================================

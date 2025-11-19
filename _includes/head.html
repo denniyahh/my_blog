@@ -5,10 +5,23 @@
   {%- seo -%}
   {%- assign vite_dev = site.vite.dev_server.enabled | default: false -%}
   {%- assign vite_url = site.vite.dev_server.url | default: "http://127.0.0.1:5173" -%}
+  {%- assign vite_dynamic = site.vite.dev_server.bind_to_request_host | default: false -%}
+  {%- assign vite_port = site.vite.dev_server.port | default: 5173 -%}
   <link rel="stylesheet" href="{{ "/assets/dist/css/main.css" | relative_url }}" id="bundle-css">
   {%- if jekyll.environment == "development" and vite_dev -%}
-    <script type="module" src="{{ vite_url }}/@vite/client"></script>
-    <script type="module" src="{{ vite_url }}/assets/js/main.ts"></script>
+    {%- if vite_dynamic -%}
+      <script type="module">
+        const devServer = `${window.location.protocol}//${window.location.hostname}:{{ vite_port }}`;
+        const bootVite = async () => {
+          await import(devServer + "/@vite/client");
+          await import(devServer + "/assets/js/main.ts");
+        };
+        bootVite().catch((error) => console.error("Failed to load Vite dev server", error));
+      </script>
+    {%- else -%}
+      <script type="module" src="{{ vite_url }}/@vite/client"></script>
+      <script type="module" src="{{ vite_url }}/assets/js/main.ts"></script>
+    {%- endif -%}
   {%- else -%}
     <script type="module" src="{{ "/assets/dist/js/main.js" | relative_url }}"></script>
   {%- endif -%}

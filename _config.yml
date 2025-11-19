@@ -6,7 +6,7 @@ baseurl: ""
 # Navigation
 header_pages:
   - index.md
-  - longform.md
+# - longform.md  # temporarily hidden until content is ready
   - about.md
 
 # Content
@@ -19,6 +19,8 @@ vite:
   dev_server:
     enabled: true
     url: "http://127.0.0.1:5173"
+    port: 5173
+    bind_to_request_host: true
 
 # Plugins supported by github-pages
 plugins:

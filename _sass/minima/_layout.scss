@@ -47,55 +47,65 @@
   }
 
   @include media-query($on-palm) {
-    position: absolute;
-    top: 9px;
-    right: $spacing-unit / 2;
-    background-color: $background-color;
-    border: 1px solid $grey-color-light;
-    border-radius: 5px;
-    text-align: right;
+    position: fixed;
+    bottom: $spacing-unit / 2;
+    left: $spacing-unit / 2;
+    right: auto;
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+    text-align: left;
+    padding: 0;
+    box-shadow: none;
+    z-index: 1000;
 
     label[for="nav-trigger"] {
       display: block;
-      float: right;
-      width: 36px;
-      height: 36px;
-      z-index: 2;
+      width: 48px;
+      height: 48px;
       cursor: pointer;
     }
 
     .menu-icon {
-      display: block;
-      float: right;
-      width: 36px;
-      height: 26px;
-      line-height: 0;
-      padding-top: 10px;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      color: $grey-color-dark;
 
       > svg {
-        fill: $grey-color-dark;
+        fill: currentColor;
+        width: 20px;
+        height: 20px;
       }
     }
 
     input ~ .trigger {
-      clear: both;
       display: none;
+      position: fixed;
+      bottom: calc($spacing-unit + 32px);
+      left: $spacing-unit / 2;
+      right: $spacing-unit;
+      background-color: $background-color;
+      border: 1px solid $grey-color-light;
+      border-radius: 12px;
+      padding: 12px 0;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
     }
 
     input:checked ~ .trigger {
       display: block;
-      padding-bottom: 5px;
     }
 
     .page-link {
       display: block;
-      padding: 5px 10px;
+      padding: 10px 18px;
 
       &:not(:last-child) {
         margin-right: 0;
       }
-      margin-left: 20px;
+      margin-left: 0;
     }
   }
 }
@@ -149,6 +159,36 @@
   width:         calc(45% - (#{$spacing-unit} / 2));
 }
 
+$content-max-width: 740px;
+$content-padding: 30px;
+
+.fab-stack {
+  position: fixed;
+  bottom: $spacing-unit / 2;
+  right: $spacing-unit / 2;
+  right: max(#{$spacing-unit / 2}, calc((100vw - #{$content-max-width}) / 2 + #{$content-padding}));
+  display: flex;
+  gap: $spacing-unit / 4;
+  z-index: 1000;
+}
+
+.fab-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $grey-color-dark;
+  text-decoration: none;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+}
+
 @include media-query($on-laptop) {
   .footer-col-1,
   .footer-col-2 {
@@ -167,6 +207,10 @@
     float: none;
     width: -webkit-calc(100% - (#{$spacing-unit} / 2));
     width:         calc(100% - (#{$spacing-unit} / 2));
+  }
+
+  .fab-stack {
+    right: $spacing-unit / 2;
   }
 }
 

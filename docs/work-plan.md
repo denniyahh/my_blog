@@ -20,3 +20,6 @@
 ## Notes
 - Keep plan updated at the end of each work session.
 - Refer to `docs/specs/001-mobile-first-redesign/spec.md` for acceptance criteria + documentation requirements.
+- Refer to `docs/theme-spec.md` for detailed design decisions.
+- Refer to `docs/specs/001-mobile-first-redesign/spec.md` for acceptance criteria + documentation requirements.
+- For LAN/mobile QA, always spin up the tmux-based port forward (`devpod ssh myblog-devpod --start-services=false --forward-ports 0.0.0.0:4000:127.0.0.1:4000 --forward-ports 0.0.0.0:35730:127.0.0.1:35730 --forward-ports 0.0.0.0:5173:127.0.0.1:5173 --command 'sleep 1d'`).
