@@ -16,3 +16,5 @@ assets/dist/
 bin/
 .pnpm-store
 .vite/
+.codex
+.lighthouseci

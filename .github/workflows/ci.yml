@@ -18,7 +18,7 @@ jobs:
           version: 10
           run_install: false
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: "22"
           cache: "pnpm"
@@ -55,7 +55,7 @@ jobs:
             --timeout 20
             --verbose
             --exclude "^https?://dennis\.kim"
-            --exclude '^https://www\.linkedin\.com.*'
+            --exclude "^https?://www\.linkedin\.com.*"
             **/*.md _site/**/*.html
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
