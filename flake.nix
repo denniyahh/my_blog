@@ -38,7 +38,7 @@
             zellij
             fzf
             chromium
-            python314
+            python313
           ];
 
          shellHook = ''
