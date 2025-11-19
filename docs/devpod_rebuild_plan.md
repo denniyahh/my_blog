@@ -1,7 +1,7 @@
 Step-by-Step Plan for an AI-Optimized DevPod
 
 1. Rebuild the devcontainer around the flake.
-
+   
    - Base image: mcr.microsoft.com/devcontainers/base:debian (lightweight).
    - Add features: nix, direnv, gh.
    - Set "postCreateCommand": "direnv allow" and "remoteEnv": { "DIRENV_LOG_FORMAT": "" }.
@@ -40,18 +40,15 @@ Step-by-Step Plan for an AI-Optimized DevPod
      host shells.
 
 6. Consolidate JS package management.
-
    - Decide on pnpm (preferred). Remove package-lock.json and package.json scripts that reference npm. Update CI and docs to use pnpm
      exclusively.
 
 7. Add AI-specific guardrails.
-
    - Create scripts/codex-env.sh that runs any command via devpod ssh … direnv exec .. Update AGENTS.md to tell Codex to run ./scripts/
      codex-env.sh "<cmd>" so command routing is consistent.
    - Provide a docs/ai-playbook.md with: repo layout, common tasks, testing strategy, command snippets.
 
 8. Improve lint/test automation.
-
    - Add .pre-commit-config.yaml with markdownlint, htmlproofer, prettier (for JS), and run pre-commit install in postCreateCommand.
    - Hook GitHub Actions to run just build + just preview, so AI changes are validated automatically.
 

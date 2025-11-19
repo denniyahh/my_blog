@@ -55,6 +55,7 @@ jobs:
             --timeout 20
             --verbose
             --exclude "^https?://dennis\.kim"
+            --exclude '^https://www\.linkedin\.com.*'
             **/*.md _site/**/*.html
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
