@@ -10,7 +10,7 @@ end
 
 group :development, :test do
   gem 'debug'
-  gem 'html-proofer', '~> 5.0'
+  gem 'html-proofer', '~> 5.1'
   gem 'rspec'
   gem 'rubocop', require: false
   gem 'ruby-lsp'
