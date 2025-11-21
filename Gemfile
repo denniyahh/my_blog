@@ -12,7 +12,6 @@ group :development, :test do
   gem 'debug'
   gem 'html-proofer', '~> 5.0'
   gem 'rspec'
-  gem 'rubocop', require: false
   gem 'ruby-lsp'
   gem 'standardrb', require: false
 end

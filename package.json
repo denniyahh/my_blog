@@ -5,8 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0 --port 5173",
+    "dev:jekyll": "bundle exec jekyll serve --host 0.0.0.0 --port 4000 --livereload --livereload-port 35730 --force_polling",
     "build": "vite build",
-    "preview": "vite preview --host 0.0.0.0 --port 5173"
+    "build:jekyll": "bundle exec jekyll build --config _config.yml,_config.ci.yml",
+    "preview": "vite preview --host 0.0.0.0 --port 5173",
+    "test": "pnpm run test:html && pnpm run test:markdown",
+    "test:html": "bundle exec htmlproofer ./_site --assume-extension --check-html --disable-external --no-enforce-https",
+    "test:markdown": "markdownlint-cli2 \"**/*.md\"",
+    "lint": "eslint assets/js"
   },
   "engines": {
     "node": ">=20",

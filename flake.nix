@@ -16,11 +16,12 @@
       in {
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
-            ruby_3_3
+            ruby
             bundler
             nodejs_22
-            nodePackages.pnpm
+            pnpm
             nodePackages.markdownlint-cli2
+            lychee
             git
             neovim
             openssl
@@ -34,11 +35,8 @@
             zellij
             fzf
             chromium
-            broot
-            zellij
-            fzf
-            chromium
             python313
+            evil-helix
           ];
 
          shellHook = ''

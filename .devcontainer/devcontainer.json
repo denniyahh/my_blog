@@ -1,18 +1,17 @@
 {
-  "name": "Jekyll Blog Dev",
-  "image": "mcr.microsoft.com/devcontainers/ruby:3.2-bookworm",
+  "name": "Jekyll Blog Dev (flake)",
+  "image": "mcr.microsoft.com/devcontainers/base:debian",
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {},
-    "ghcr.io/devcontainers/features/node:1": { "version": "lts" },
+    "ghcr.io/devcontainers/features/git:1": {},
     "ghcr.io/devcontainers/features/github-cli:1": {},
-    "ghcr.io/devcontainers/features/git:1": {}
+    "ghcr.io/devcontainers/features/nix:1": {},
+    "ghcr.io/devcontainers/features/direnv:1": {}
   },
-  "forwardPorts": [4000],
-  "portsAttributes": {
-    "4000": { "label": "Jekyll (http://127.0.0.1:4000)", "onAutoForward": "notify" }
-  },
-  "containerEnv": { "JEKYLL_ENV": "development" },
-  "postCreateCommand": "bundle install",
+  "forwardPorts": [],
+  "containerEnv": {},
+  "remoteEnv": { "DIRENV_LOG_FORMAT": "" },
+  "postCreateCommand": "direnv allow || true",
   "customizations": {
     "vscode": {
       "extensions": [
