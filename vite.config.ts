@@ -1,5 +1,8 @@
 import { defineConfig } from 'vite';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const projectRoot = fileURLToPath(new URL('.', import.meta.url));
 
 export default defineConfig({
   root: '.',
@@ -14,7 +17,7 @@ export default defineConfig({
     assetsDir: '',
     rollupOptions: {
       input: {
-        main: path.resolve(__dirname, 'assets/js/main.ts'),
+        main: path.resolve(projectRoot, 'assets/js/main.ts'),
       },
       output: {
         entryFileNames: 'js/[name].js',
@@ -33,7 +36,8 @@ export default defineConfig({
     devSourcemap: true,
     preprocessorOptions: {
       scss: {
-        includePaths: [path.resolve(__dirname, '_sass')],
+        includePaths: [path.resolve(projectRoot, '_sass')],
+        silenceDeprecations: ['import'],
       },
     },
   },

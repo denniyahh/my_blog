@@ -11,7 +11,7 @@ jobs:
   build_and_test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - uses: pnpm/action-setup@v4
         with:
@@ -41,7 +41,7 @@ jobs:
         run: bundle exec htmlproofer ./_site --assume-extension --check-html --disable-external --no-enforce-https
 
       - name: Markdownlint
-        uses: DavidAnson/markdownlint-cli2-action@v20
+        uses: DavidAnson/markdownlint-cli2-action@v21
         with:
           globs: |
             **/*.md
