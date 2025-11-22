@@ -10,7 +10,7 @@ ignores:
   - ".github/**"
   - "WARP.md"
   - "AGENTS.md"
-  - "docs/**"
+  - ".specify/**"
   - ".bundler/**"
   - "docs/tmp/**"
   - "README.md"
