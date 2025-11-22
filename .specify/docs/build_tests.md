@@ -12,16 +12,16 @@ bundle exec jekyll build --trace --config _config.yml,_config.ci.yml
 bundle exec htmlproofer ./_site --assume-extension --check-html --disable-external --no-enforce-https
 
 5. markdown lint (same glob as CI)
-npx markdownlint-cli2 "**/*.md"
+npx markdownlint-cli2 . --config .markdownlint-cli2.yaml
 
 6. external link check (same args as CI)
-npx lychee \
+lychee \
   --accept 200,206,429 \
   --max-redirects 5 \
   --timeout 20 \
   --verbose \
   --exclude "^https?://dennis\\.kim" \
-  --exclude '^https://www\\.linkedin\\.com.*' \
+  --exclude ""^https?://www\\.linkedin\\.com.*"" \
   **/*.md _site/**/*.html
 
 7. run build-mobile-preview.sh

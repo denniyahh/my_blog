@@ -42,10 +42,11 @@
          shellHook = ''
            export GEM_HOME=$PWD/.bundler
            export PATH=$GEM_HOME/bin:$PATH
-            export LD_LIBRARY_PATH=${pkgs.curl.out}/lib''${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
+           # Avoid forcing LD_LIBRARY_PATH; let Nix-provided libs resolve normally.
+           unset LD_LIBRARY_PATH
 
-            echo "Dev shell ready. Run 'bundle install' and 'pnpm install' if you haven't already."
-          '';
+           echo "Dev shell ready. Run 'bundle install' and 'pnpm install' if you haven't already."
+         '';
         };
       });
 }

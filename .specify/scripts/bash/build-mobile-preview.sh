@@ -106,7 +106,7 @@ run_step "htmlproofer" \
     bundle exec htmlproofer ./_site --assume-extension --check-html --disable-external --no-enforce-https
 
 run_step "markdownlint" \
-    npx markdownlint-cli2 "**/*.md"
+    npx markdownlint-cli2 . --config .markdownlint-cli2.yaml
 
 start_preview_server
 
