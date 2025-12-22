@@ -41,8 +41,8 @@ GEM
       fiber-local (~> 1.1)
       json
     csv (3.3.5)
-    date (3.5.0)
-    debug (1.11.0)
+    date (3.5.1)
+    debug (1.11.1)
       irb (~> 1.10)
       reline (>= 0.3.8)
     diff-lcs (1.6.2)
@@ -54,7 +54,7 @@ GEM
     em-websocket (0.5.3)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0)
-    erb (6.0.0)
+    erb (6.0.1)
     ethon (0.15.0)
       ffi (>= 1.15.0)
     eventmachine (1.2.7)
@@ -148,9 +148,9 @@ GEM
     http_parser.rb (0.8.0)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
-    io-console (0.8.1)
+    io-console (0.8.2)
     io-event (1.14.2)
-    irb (1.15.3)
+    irb (1.16.0)
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
@@ -320,7 +320,7 @@ GEM
       prettyprint
     prettyprint (0.2.0)
     prism (1.6.0)
-    psych (5.2.6)
+    psych (5.3.1)
       date
       stringio
     public_suffix (5.1.1)
@@ -331,7 +331,7 @@ GEM
       ffi (~> 1.0)
     rbs (3.9.5)
       logger
-    rdoc (6.15.1)
+    rdoc (7.0.1)
       erb
       psych (>= 4.0.0)
       tsort
@@ -403,7 +403,7 @@ GEM
       rubocop-performance (~> 1.25.0)
     standardrb (1.0.1)
       standard
-    stringio (3.1.8)
+    stringio (3.2.0)
     terminal-table (1.6.0)
     traces (0.18.2)
     tsort (0.2.0)
